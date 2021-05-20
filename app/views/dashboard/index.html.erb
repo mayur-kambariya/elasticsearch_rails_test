@@ -1,0 +1,17 @@
+<%#= link_to 'sign_out', destroy_user_session_path, method: :delete%>
+<%= link_to 'New post', new_post_path%>
+<%= form_with(url: dashboard_index_url, method: "get", remote: true) do %>
+    <%= text_field_tag(:q, nil, placeholder: "Search") %>
+    <%= button_tag("Search", name: nil) %>
+<% end %>
+
+<div class="container">
+  <h3>Search Results</h3>
+  <div class="search_results">
+    <% if @results.present? %>
+        <%= render partial: 'search_result', collection: @results, as: :result %>
+    <% else %>
+        <h4>No Result found</h4>
+    <% end %>
+  </div>
+</div>
